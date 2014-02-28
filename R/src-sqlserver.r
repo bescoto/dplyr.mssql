@@ -443,6 +443,9 @@ update.tbl_sqlserver <- function(object, ...) {
                                   })
     
     object$select <- lapply(object$select, function(x){
+      if(!is.name(x) && !is.character(x)) {
+        return(x)
+      }
       p <- grep(paste0("^(\\w+\\.)?", as.character(x), "$"), as.vector(all_select))
       if(length(p)==1)
         return(as.name(all_select[[p]]))
@@ -453,6 +456,9 @@ update.tbl_sqlserver <- function(object, ...) {
   
   if(!is.null(object$group_by)){
     object$group_by <- lapply(object$group_by, function(x){
+      if(!is.name(x) && !is.character(x)) {
+        return(x)
+      }
       p <- grep(paste0("^(\\w+\\.)?", as.character(x), "$"), as.vector(all_select))
       if(length(p)==1)
         return(as.name(all_select[[p]]))
