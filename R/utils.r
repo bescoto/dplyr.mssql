@@ -137,3 +137,7 @@ auto_copy <- function(x, y, copy = FALSE, ...) {
   copy_to(x$src, as.data.frame(y), random_table_name(), ...)
 }
 
+random_table_name <- function(n = 10) {
+  paste0(sample(letters, n, replace = TRUE), collapse = "")
+}
+
