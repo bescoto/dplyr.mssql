@@ -30,7 +30,7 @@ summarise.tbl_sqlserver<- function(.data, ..., .collapse_result = TRUE) {
 #' @export
 copy_to.src_sqlserver <- function(dest, df, name = deparse(substitute(df)), 
                                   types = NULL, temporary = TRUE, indexes = NULL, 
-                                  analyze = TRUE, ...) {
+                                  analyze = TRUE, create = TRUE, ...) {
   assert_that(is.data.frame(df), is.string(name), is.flag(temporary))
   
   qry_run <- function(con, sql, 
@@ -69,7 +69,11 @@ copy_to.src_sqlserver <- function(dest, df, name = deparse(substitute(df)),
   
   con <- dest$con
   
-  qry_run(con, sql_create_table(con, name, types))
+  if( create ) {
+    qry_run(con, sql_create_table(con, name, types))
+  } else {
+    qry_run(con, paste0("TRUNCATE TABLE ", name))
+  }
   sql_insert_into(con, name, df)
   #   sql_create_indexes(con, name, indexes)
   #   if (analyze) sql_analyze(con, name)
