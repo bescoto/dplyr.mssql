@@ -33,11 +33,13 @@ all_names <- function(x) {
 is.lang <- function(x) {
   is.name(x) || is.atomic(x) || is.call(x)
 }
+
 is.lang.list <- function(x) {
   if (is.null(x)) return(TRUE)
   
   is.list(x) && all_apply(x, is.lang)
 }
+
 on_failure(is.lang.list) <- function(call, env) {
   paste0(call$x, " is not a list containing only names, calls and atomic vectors")
 }
@@ -45,13 +47,15 @@ on_failure(is.lang.list) <- function(call, env) {
 only_has_names <- function(x, nms) {
   all(names(x) %in% nms)
 }
+
+#' @import assertthat
 on_failure(all_names) <- function(call, env) {
   x_nms <- names(eval(call$x, env))
   nms <- eval(call$nms, env)
   extra <- setdiff(x_nms, nms)
   
   paste0(call$x, " has named components: ", paste0(extra, collapse = ", "), ".", 
-    "Should only have names: ", paste0(nms, collapse = ","))
+         "Should only have names: ", paste0(nms, collapse = ","))
 }
 
 all_apply <- function(xs, f) {
@@ -87,7 +91,7 @@ is.wholenumber <- function(x, tol = .Machine$double.eps ^ 0.5) {
 as_df <- function(x) {
   class(x) <- "data.frame"
   attr(x, "row.names") <- c(NA_integer_, -length(x[[1]]))
-
+  
   x
 }
 

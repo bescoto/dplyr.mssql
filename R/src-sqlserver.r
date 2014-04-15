@@ -1,3 +1,4 @@
+#' @import dplyr
 #' @export
 src_sqlserver <- function(dbname, host = NULL, user = "root", 
                       password = "", ...) {
