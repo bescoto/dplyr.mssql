@@ -27,6 +27,7 @@ summarise.tbl_sqlserver<- function(.data, ..., .collapse_result = TRUE) {
   )
 }
 
+#' @import stringr
 #' @export
 copy_to.src_sqlserver <- function(dest, df, name = deparse(substitute(df)), 
                                   types = NULL, temporary = TRUE, indexes = NULL, 
