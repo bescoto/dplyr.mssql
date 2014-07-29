@@ -113,9 +113,9 @@ named <- function(...) {
   x
 }
 
+#' unique symbol
 unique_name <- local({
   i <- 0
-  
   function() {
     i <<- i + 1
     paste0("_W", i)

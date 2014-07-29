@@ -1,3 +1,4 @@
+#' create "src_sqlserver" object
 #' @import dplyr
 #' @export
 src_sqlserver <- function(dbname, host = NULL, user = "root", 
@@ -31,7 +32,7 @@ tbl.src_sqlserver <- function(src, from, ...) {
       name <- ident(unique_name())
       from <- build_sql("(", from, ") AS ", name, con = src$con)
     }
-    
+    # init tbl_sqlserver data structure
     tbl <- make_tbl(c(subclass, "sql"),
                     src = src,              # src object
                     from = from,            # table, join, or raw sql
@@ -43,6 +44,7 @@ tbl.src_sqlserver <- function(src, from, ...) {
                     order_by = NULL,        # ORDER_BY: list of calls
                     name = name
     )
+    # fill in tbl_sqlserver data structure
     update(tbl)
   }
   
@@ -167,11 +169,11 @@ collapse.tbl_sqlserver <- function(x, vars = NULL, ...) {
   update(tbl, group_by = groups(x))
 }
 
+#' fill in tbl_sqlserver data structure
 #' @export
 update.tbl_sqlserver <- function(object, ...) {
   args <- list(...)
   assert_that(only_has_names(args, c("select", "where", "group_by", "order_by")))
-  
   all_select <- lapply(object$select, as.character)
   for (nm in names(args)) {
     object[[nm]] <- args[[nm]]
@@ -221,4 +223,15 @@ update.tbl_sqlserver <- function(object, ...) {
   
   NextMethod("update", object, select = object$select, where = object$where, 
              group_by = object$group_by, order_by = object$order_by)
+}
+
+
+#' @export
+as.data.frame.tbl_sqlserver <- function (x, row.names = NULL, optional = FALSE, ..., n = -1L) {
+#   res <- dbSendQuery(con, sql)
+#   on.exit(dbClearResult(res))
+#   out <- fetch(res, n)
+#   res_warn_incomplete(res)
+#   out
+  x$query$fetch(n)
 }
