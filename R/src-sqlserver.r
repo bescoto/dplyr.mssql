@@ -228,10 +228,5 @@ update.tbl_sqlserver <- function(object, ...) {
 
 #' @export
 as.data.frame.tbl_sqlserver <- function (x, row.names = NULL, optional = FALSE, ..., n = -1L) {
-#   res <- dbSendQuery(con, sql)
-#   on.exit(dbClearResult(res))
-#   out <- fetch(res, n)
-#   res_warn_incomplete(res)
-#   out
   x$query$fetch(n)
 }
