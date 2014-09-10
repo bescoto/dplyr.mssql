@@ -1,14 +1,10 @@
-qry_fields <- function(con, from) {
-  names(qry_fetch(con, paste0("SELECT TOP 0 * FROM ", from), 0L))
-}
-
 table_fields <- function(con, table) {
   qry_fields(con, as.character(table))
 }
 
 qry_fetch <- function(con, sql, n = -1L,
-                                    show = getOption("dplyr.show_sql"),
-                                    explain = getOption("dplyr.explain_sql")) {
+                      show = getOption("dplyr.show_sql"),
+                      explain = getOption("dplyr.explain_sql")) {
   
   if (show) message(sql)
   if (explain) message(qry_explain(con, sql))
@@ -19,6 +15,10 @@ qry_fetch <- function(con, sql, n = -1L,
   out <- fetch(res, n)
   res_warn_incomplete(res)
   out
+}
+
+qry_fields <- function(con, from) {
+  names(qry_fetch(con, paste0("SELECT TOP 0 * FROM ", from), 0L))
 }
 
 res_warn_incomplete <- function(res) {

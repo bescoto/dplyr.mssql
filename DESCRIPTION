@@ -7,6 +7,8 @@ Author: Shan Huang <openhuangs@gmail.com>
 Maintainer: Shan Huang <openhuangs@gmail.com>
 Description: MS SQLServer plugin for dplyr
 License: What license is it under?
+Depends:
+    DBI
 Imports:
     assertthat,
     DBI,
