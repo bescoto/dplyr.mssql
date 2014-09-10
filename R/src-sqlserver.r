@@ -1,11 +1,13 @@
 #' create "src_sqlserver" object
 #' @import dplyr
+#' @import RMSSQL
+#' @import DBI
 #' @export
 src_sqlserver <- function(dbname, host = NULL, user = "root", 
                       password = "", ...) {
-  if (!require("RSQLServer")) {
-    stop("RSQLServer package required to connect to SQL Server", call. = FALSE)
-  }
+#   if (!require("RSQLServer")) {
+#     stop("RSQLServer package required to connect to SQL Server", call. = FALSE)
+#   }
   
   drv <- SQLServer() 
   
