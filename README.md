@@ -1,3 +1,8 @@
+# ATTENTION
+
+This package is not under maintainance now. 
+
+
 dplyr.sqlserver
 ===============
 
