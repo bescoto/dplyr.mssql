@@ -1,4 +1,6 @@
 #' @import stringr
+#' @import RJDBC
+#' @import assertthat
 #' @export
 copy_to.src_mssql <- function(dest, df, name = deparse(substitute(df)),
                                   types = NULL, temporary = TRUE, indexes = NULL,

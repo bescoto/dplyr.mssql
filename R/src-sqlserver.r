@@ -2,6 +2,7 @@
 #' @import dplyr
 #' @import RMSSQL
 #' @import DBI
+#' @import assertthat
 #' @export
 src_mssql <- function(dbname=NULL, host=NULL, user='', ...) {
   drv <- MSSQLServer()
@@ -10,6 +11,7 @@ src_mssql <- function(dbname=NULL, host=NULL, user='', ...) {
   return(src_sql("mssql", con, info=info))
 }
 
+#' @export
 tbl.src_mssql <- function(src, from, ...) {
   tbl_sql("mssql", src = src, from = from, ...)
 }

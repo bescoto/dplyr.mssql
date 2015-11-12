@@ -6,7 +6,7 @@ Date: 2015-11-11
 Author: Ben Escoto <benedict.escoto@aonbenfield.com>
 Maintainer: Ben Escoto <benedict.escoto@aonbenfield.com>
 Description: MS SQLServer plugin for dplyr.
-   Written by Shan Huang <openhuangs@gmail.com>
+    Written by Shan Huang <openhuangs@gmail.com>
 License: What license is it under?
 Depends:
     DBI
@@ -17,3 +17,4 @@ Imports:
     stringr,
     dplyr
 Enhances: dplyr
+RoxygenNote: 5.0.1

@@ -1,9 +1,10 @@
+#' @import RJDBC
 sql_insert_into <- function(con, table, values) {
 
   MAX_INSERT_ROWS <- 1000
   qry_run <- function(con, sql,
-                      show = getOption("dplyr.show_sql"),
-                      explain = getOption("dplyr.explain_sql")) {
+                      show = getOption("dplyr.show_sql", default=FALSE),
+                      explain = getOption("dplyr.explain_sql", default=FALSE)) {
     if (show) message(sql)
     if (explain) message(qry_explain(con, sql))
 
