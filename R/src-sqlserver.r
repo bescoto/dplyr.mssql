@@ -100,7 +100,8 @@ sql_select.MSSQLServerConnection <- function(
     out$offset <- build_sql("OFFSET ", offset, con = con)
   }
 
-  escape(unname(compact(out)), collapse = "\n", parens = FALSE, con = con)
+  escape(unname(Filter(Negate(is.null), out)),
+         collapse = "\n", parens = FALSE, con = con)
 }
 
 #' @export
@@ -112,7 +113,7 @@ db_query_fields.MSSQLServerConnection <- function(conn, sql, ...) {
   fields <- build_sql("SELECT * FROM ", sql, " WHERE 0=1", con=conn)
   qry <- dbSendQuery(conn, fields)
   on.exit(dbClearResult(qry))
-  return(dbColumnInfo(qry)$field.name)
+  return(as.character(dbColumnInfo(qry)$field.name))
 }
 
 #' @export

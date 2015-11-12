@@ -1,8 +1,8 @@
 Package: dplyr.mssql
 Type: Package
 Title: MS SQLServer plugin for dplyr
-Version: 0.0.2
-Date: 2015-11-11
+Version: 0.0.3
+Date: 2015-11-12
 Author: Ben Escoto <benedict.escoto@aonbenfield.com>
 Maintainer: Ben Escoto <benedict.escoto@aonbenfield.com>
 Description: MS SQLServer plugin for dplyr.
