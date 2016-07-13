@@ -8,7 +8,7 @@ Microsoft SQL Server source driver for dplyr using the RMSSQL package
 
 requirements
 ===============
-
+    devtools::install_version("dplyr", version = "0.4.3")
     devtools::install_github("bescoto/RMSSQL")
     devtools::install_github("bescoto/dplyr.mssql") # this package
 

@@ -15,6 +15,6 @@ Imports:
     DBI,
     RMSSQL,
     stringr,
-    dplyr
-Enhances: dplyr
+    dplyr (== 0.4.3)
+Enhances: dplyr (== 0.4.3)
 RoxygenNote: 5.0.1
